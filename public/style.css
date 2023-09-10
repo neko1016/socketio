@@ -9,7 +9,7 @@
     left: 0; /* 左からの位置 */
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /*影を付ける*/
     width: 100%;
-    background:snow;
+    background:white;
     display: flex;
   }
 body{
