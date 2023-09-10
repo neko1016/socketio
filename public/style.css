@@ -3,7 +3,7 @@
 /*-------------------------
  * STEP2
  *-------------------------*/
- head{
+ #head{
     position: fixed; /* ヘッダーを固定する */
     top: 0; /* 上からの位置 */
     left: 0; /* 左からの位置 */
@@ -87,5 +87,4 @@ body{
 #frm-quit button{
   width: 100px;
   height: 30px;
-  font-size: 12pt;
 }
