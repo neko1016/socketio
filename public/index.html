@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>チャット</title>
   <link rel="stylesheet" href="style.css" type="text/css" media="all">
+  <!--フォントの読み込み-->
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@800&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 <body>
@@ -18,7 +20,7 @@
 
 <!-- STEP2. 名前を入力 -->
 <section id="inputmyname">
-  <p>あなたの名前を入力してください</p>
+  <p>表示したい名前を入力してください</p>
   <form id="frm-myname" autocomplete="off">
     <input type="text" id="txt-myname"><br>
     <button>入室</button>
@@ -32,6 +34,13 @@
 <!-- /名前を入力 -->
 
 <!-- STEP3. チャット開始 -->
+<section id="head">
+  <!-- ログアウト -->
+  <form id="frm-quit">
+    <button>退室する</button>
+  </form>
+</section>
+  
 <section id="chat">
   <!-- 発言フォーム -->
   <form id="frm-post" autocomplete="off">
@@ -47,10 +56,6 @@
     <ul id="memberlist"></ul>
   </section>
 
-  <!-- ログアウト -->
-  <form id="frm-quit">
-    <button>退室する</button>
-  </form>
 </section>
 <!-- /チャット本体 -->
 
