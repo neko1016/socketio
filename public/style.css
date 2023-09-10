@@ -9,23 +9,16 @@ body{
 }
 #inputmyname{
   display:none;
-  position: absolute;
 }
 #txt-myname{
   width: 300px;
   font-size: 14pt;
   padding: 4px;
-  position: absolute;
-        left: 50%;
-        margin-right: -50%;
 }
 #frm-myname button{
   width: 40px;
   height: 30px;
   font-size: 12pt;
-  position: absolute;
-        left: 50%;
-        margin-right: -50%;
 }
 
 /*-------------------------
