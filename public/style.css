@@ -3,11 +3,9 @@
 /*-------------------------
  * STEP2
  *-------------------------*/
-#body{
-  top: 40%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
+body{
+  width:100%; /*ページ全体の幅は100%と指定する*/	
+  text-align:center; /*ページ全体を中央揃えにする*/
 }
 #inputmyname{
   display:none;
