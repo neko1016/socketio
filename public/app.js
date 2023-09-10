@@ -189,10 +189,10 @@ socket.on("member-post", (msg)=>{
  */
 function gotoSTEP1(){
   // NowLoadingから開始
+  $("head").style.display = "none"; 
   $("#nowconnecting").style.display = "block";  // NowLoadingを表示
   $("#inputmyname").style.display = "none";     // 名前入力を非表示
   $("#chat").style.display = "none";            // チャットを非表示
-  $("head").style.display = "none"; 
 
   // 自分の情報を初期化
   IAM.token = null;
