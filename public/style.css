@@ -84,11 +84,6 @@ body{
 .member-me{
   font-weight: bold;
 }
-
-#frm-quit button{
-  width: 100px;
-  height: 30px;
-}
-#frm-quit img{
+#frm-quit image{
   width: 100px;
 }
