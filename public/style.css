@@ -81,9 +81,6 @@ body{
   padding: 5px 5px 5px 30px;  /* 上右下左 */
   margin-left: 10px;
 }
-.member-me{
-  font-weight: bold;
-}
-#frm-quit image{
+#frm-quit input{
   width: 100px;
 }
