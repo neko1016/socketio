@@ -12,9 +12,6 @@
     background:white;
     display: flex;
   }
-#head button{
- width:60px;
-}
 body{
   width:100%; /*ページ全体の幅は100%と指定する*/	
   text-align:center; /*ページ全体を中央揃えにする*/
@@ -91,4 +88,7 @@ body{
 #frm-quit button{
   width: 100px;
   height: 30px;
+}
+#frm-quit img{
+  width: 100px;
 }
