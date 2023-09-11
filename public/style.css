@@ -3,6 +3,9 @@
 /*-------------------------
  * STEP2
  *-------------------------*/
+ h1{
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+ }
  #head{
     position: fixed; /* ヘッダーを固定する */
     top: 0; /* 上からの位置 */
