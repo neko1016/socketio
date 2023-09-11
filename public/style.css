@@ -83,4 +83,6 @@ body{
 }
 #frm-quit input{
   width: 60px;
+  margin-right: 10px;
+  float: right;
 }
