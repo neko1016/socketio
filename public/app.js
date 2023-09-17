@@ -26,7 +26,7 @@ socket.on("token", (data)=>{
 
   // 表示を切り替える
   if( ! IAM.is_join ){
-    $("#head").style.display = "none";   
+    $("#frm-quit").style.display = "none";   
     $("#nowconnecting").style.display = "none";   // 「接続中」を非表示
     $("#inputmyname").style.display = "block";    // 名前入力を表示
     $("#txt-myname").focus();
@@ -82,7 +82,7 @@ socket.on("join-result", (data)=>{
     // 表示を切り替える
     $("#inputmyname").style.display = "none";   // 名前入力を非表示
     $("#chat").style.display = "block";         // チャットを表示
-    $("#head").style.display = "block";   
+    $("#frm-quit").style.display = "block";   
     $("#msg").focus();
   }
   //------------------------
@@ -189,7 +189,7 @@ socket.on("member-post", (msg)=>{
  */
 function gotoSTEP1(){
   // NowLoadingから開始
-  $("frm-quit").style.display = "none"; 
+  $("#frm-quit").style.display = "none"; 
   $("#nowconnecting").style.display = "block";  // NowLoadingを表示
   $("#inputmyname").style.display = "none";     // 名前入力を非表示
   $("#chat").style.display = "none";            // チャットを非表示
