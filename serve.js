@@ -119,6 +119,31 @@ io.on("connection", (socket)=>{
     // トークンが誤っていた場合は無視する
   });
 
+  
+  // プレイヤーの初期位置と状態を生成し、クライアントに送信
+  const player = {
+    x: Math.random() * 800, // 画面幅内のランダムなX座標
+    y: Math.random() * 600, // 画面高さ内のランダムなY座標
+  };
+  socket.emit('playerData', player);
+
+  // クライアントからの移動情報を受信
+  socket.on('move', (data) => {
+    // dataには移動情報が含まれる (例: { x: 10, y: -5 })
+    // ここでプレイヤーの新しい位置を計算
+    player.x += data.x;
+    player.y += data.y;
+    // 新しい位置情報を他のクライアントに送信
+    io.emit('playerMoved', player);
+  });
+
+  // クライアントが切断したときの処理
+  socket.on('disconnect', () => {
+    console.log('A user disconnected');
+  });
+});
+
+
   /**
    * [イベント] 退室する
    */
