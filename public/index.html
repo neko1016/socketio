@@ -55,6 +55,43 @@
     <ul id="memberlist"></ul>
   </section>
 
+   <canvas id="gameCanvas" width="800" height="600"></canvas>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let player = { x: 0, y: 0 };
+
+    // プレイヤーの位置を描画する関数
+    function drawPlayer() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'blue';
+      ctx.fillRect(player.x, player.y, 50, 50);
+    }
+
+    socket.on('playerData', (data) => {
+      player = data;
+      drawPlayer();
+    });
+
+    socket.on('playerMoved', (data) => {
+      player = data;
+      drawPlayer();
+    });
+
+    // クライアントのキー入力をサーバーに送信
+    document.addEventListener('keydown', (event) => {
+      let moveData = { x: 0, y: 0 };
+      if (event.key === 'ArrowLeft') moveData.x = -10;
+      if (event.key === 'ArrowRight') moveData.x = 10;
+      if (event.key === 'ArrowUp') moveData.y = -10;
+      if (event.key === 'ArrowDown') moveData.y = 10;
+      socket.emit('move', moveData);
+    });
+  </script>
+
 </section>
 <!-- /チャット本体 -->
 
