@@ -55,47 +55,71 @@
     <ul id="memberlist"></ul>
   </section>
 
-   <canvas id="gameCanvas" width="800" height="600"></canvas>
-  <script src="/socket.io/socket.io.js"></script>
-  <script>
-    const socket = io();
-    const canvas = document.getElementById('gameCanvas');
-    const ctx = canvas.getContext('2d');
+<!-- プレイヤーの位置を表示するためのキャンバス -->
+<canvas id="gameCanvas" width="800" height="600"></canvas>
 
-    let player = { x: 0, y: 0 };
+<!-- サーバーサイドスクリプトを読み込み -->
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const socket = io();
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
+  const players = {};
+  const image  = new Image();
 
-    // プレイヤーの位置を描画する関数
-    function drawPlayer() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // プレイヤー名を設定
+  function setPlayerName() {
+    const playerNameInput = document.getElementById('playerNameInput');
+    const name = playerNameInput.value;
+    if (name) {
+      socket.emit('setPlayerName', name);
+      playerNameInput.disabled = true;
+    }
+  }
+
+  // プレイヤー名を描画
+  function drawPlayerNames() {
+    ctx.fillStyle = 'black';
+    ctx.font = '12px Arial';
+    for (const id in players) {
+      const player = players[id];
+      ctx.fillText(player.name, player.position.x, player.position.y - 10);
+    }
+  }
+
+  // プレイヤーの位置を描画
+  image.src = 'fish.svg';
+  
+  function drawPlayers() {
+    ctx.clearRect(image, 0, 0, canvas.width, canvas.height);
+    for (const id in players) {
+      const player = players[id];
+
+      // キャンバスの外に行く場合、跳ね返る
+      if (player.position.x < 0) {
+        player.position.x = 0;
+      } else if (player.position.x > canvas.width - 50) {
+        player.position.x = canvas.width - 50;
+      }
+      if (player.position.y < 0) {
+        player.position.y = 0;
+      } else if (player.position.y > canvas.height - 50) {
+        player.position.y = canvas.height - 50;
+      }
+
       ctx.fillStyle = 'blue';
-      ctx.fillRect(player.x, player.y, 50, 50);
+        ctx.fillRect(player.position.x, player.position.y, 50, 50);
+      }
     }
 
     socket.on('playerData', (data) => {
-      player = data;
-      drawPlayer();
+      players[data.id] = data;
+      drawPlayers();
+      drawPlayerNames();
     });
-
-    socket.on('playerMoved', (data) => {
-      player = data;
-      drawPlayer();
-    });
-
-    // クライアントのキー入力をサーバーに送信
-    document.addEventListener('keydown', (event) => {
-      let moveData = { x: 0, y: 0 };
-      if (event.key === 'ArrowLeft') moveData.x = -10;
-      if (event.key === 'ArrowRight') moveData.x = 10;
-      if (event.key === 'ArrowUp') moveData.y = -10;
-      if (event.key === 'ArrowDown') moveData.y = 10;
-      socket.emit('move', moveData);
-    });
-  </script>
-
 </section>
 <!-- /チャット本体 -->
 
-<script src="/socket.io/socket.io.js"></script>
 <script src="util.js"></script>
 <script src="app.js"></script>
 
