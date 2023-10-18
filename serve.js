@@ -65,8 +65,14 @@ io.on("connection", (socket)=>{
     // トークンを作成
     const token = makeToken(socket.id);
 
+    // プレイヤーの初期位置と状態を生成し、クライアントに送信
+    const player = {
+    x: Math.random() * 800, // 画面幅内のランダムなX座標
+    y: Math.random() * 600, // 画面高さ内のランダムなY座標
+    };
+
     // ユーザーリストに追加
-    MEMBER[socket.id] = {token: token, name:null, count:MEMBER_COUNT};
+    MEMBER[socket.id] = {token: token, name:null, player: playerData count:MEMBER_COUNT};
     MEMBER_COUNT++;
 
     // 本人にトークンを送付
@@ -120,11 +126,7 @@ io.on("connection", (socket)=>{
   });
 
   
-  // プレイヤーの初期位置と状態を生成し、クライアントに送信
-  const player = {
-    x: Math.random() * 800, // 画面幅内のランダムなX座標
-    y: Math.random() * 600, // 画面高さ内のランダムなY座標
-  };
+  
   socket.emit('playerData', player);
 
   // クライアントからの移動情報を受信
@@ -135,11 +137,6 @@ io.on("connection", (socket)=>{
     player.y += data.y;
     // 新しい位置情報を他のクライアントに送信
     io.emit('playerMoved', player);
-  });
-
-  // クライアントが切断したときの処理
-  socket.on('disconnect', () => {
-    console.log('A user disconnected');
   });
 
 
